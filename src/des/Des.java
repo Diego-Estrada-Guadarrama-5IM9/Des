@@ -11,34 +11,16 @@ public class Des  {
   String Ki[] = new String [17];
   String Kf[] = new String [17];
   String D[] = new String [17];
+  String R[] = new String [17];
+  String L[] = new String [17];
    
   //Método que realiza el DES
    public void Des(/*String llave*/){
+       String PI = "";
+       
        Rondas(llave);
        Llaves();
-      String PID = Character.toString(dato.charAt(57)) + Character.toString(dato.charAt(49)) + Character.toString(dato.charAt(41)) + Character.toString(dato.charAt(33)) +
-      Character.toString(dato.charAt(25)) + Character.toString(dato.charAt(17)) + Character.toString(dato.charAt(9)) + Character.toString(dato.charAt(1)) +
-                    
-     Character.toString(dato.charAt(59)) + Character.toString(dato.charAt(51)) + Character.toString(dato.charAt(43)) + Character.toString(dato.charAt(35)) +
-     Character.toString(dato.charAt(27)) + Character.toString(dato.charAt(19)) + Character.toString(dato.charAt(11)) + Character.toString(dato.charAt(3)) +
-                    
-     Character.toString(dato.charAt(61)) + Character.toString(dato.charAt(53)) + Character.toString(dato.charAt(45)) + Character.toString(dato.charAt(37)) +
-     Character.toString(dato.charAt(29)) + Character.toString(dato.charAt(21)) + Character.toString(dato.charAt(13)) + Character.toString(dato.charAt(5)) +
-                    
-     Character.toString(dato.charAt(63)) + Character.toString(dato.charAt(55)) + Character.toString(dato.charAt(47)) + Character.toString(dato.charAt(39)) +
-     Character.toString(dato.charAt(31)) + Character.toString(dato.charAt(23)) + Character.toString(dato.charAt(15)) + Character.toString(dato.charAt(7)) +
-                    
-     Character.toString(dato.charAt(56)) + Character.toString(dato.charAt(48)) + Character.toString(dato.charAt(40)) + Character.toString(dato.charAt(32)) +
-     Character.toString(dato.charAt(24)) + Character.toString(dato.charAt(16)) + Character.toString(dato.charAt(8)) + Character.toString(dato.charAt(0)) +
-                    
-     Character.toString(dato.charAt(58)) + Character.toString(dato.charAt(50)) + Character.toString(dato.charAt(42)) + Character.toString(dato.charAt(34)) +
-     Character.toString(dato.charAt(26)) + Character.toString(dato.charAt(18)) + Character.toString(dato.charAt(10)) + Character.toString(dato.charAt(2)) +
-                    
-     Character.toString(dato.charAt(60)) + Character.toString(dato.charAt(52)) + Character.toString(dato.charAt(44)) + Character.toString(dato.charAt(36)) +
-     Character.toString(dato.charAt(28)) + Character.toString(dato.charAt(20)) + Character.toString(dato.charAt(12)) + Character.toString(dato.charAt(4)) +
-                    
-     Character.toString(dato.charAt(62)) + Character.toString(dato.charAt(54)) + Character.toString(dato.charAt(46)) + Character.toString(dato.charAt(38)) +
-     Character.toString(dato.charAt(10)) + Character.toString(dato.charAt(22)) + Character.toString(dato.charAt(14)) + Character.toString(dato.charAt(6));
+       PermutacionInicial(PI);
             
     }
    
@@ -220,6 +202,39 @@ public class Des  {
    
    //Método que crea el funcionamiento de las 8 S
    public void Sss (String ss){
+       
+   }
+   
+   //Método que hace la permutación del dato
+   public void PermutacionInicial(String PI){
+       PI = Character.toString(dato.charAt(57)) + Character.toString(dato.charAt(49)) + Character.toString(dato.charAt(41)) + Character.toString(dato.charAt(33)) +
+      Character.toString(dato.charAt(25)) + Character.toString(dato.charAt(17)) + Character.toString(dato.charAt(9)) + Character.toString(dato.charAt(1)) +
+                    
+     Character.toString(dato.charAt(59)) + Character.toString(dato.charAt(51)) + Character.toString(dato.charAt(43)) + Character.toString(dato.charAt(35)) +
+     Character.toString(dato.charAt(27)) + Character.toString(dato.charAt(19)) + Character.toString(dato.charAt(11)) + Character.toString(dato.charAt(3)) +
+                    
+     Character.toString(dato.charAt(61)) + Character.toString(dato.charAt(53)) + Character.toString(dato.charAt(45)) + Character.toString(dato.charAt(37)) +
+     Character.toString(dato.charAt(29)) + Character.toString(dato.charAt(21)) + Character.toString(dato.charAt(13)) + Character.toString(dato.charAt(5)) +
+                    
+     Character.toString(dato.charAt(63)) + Character.toString(dato.charAt(55)) + Character.toString(dato.charAt(47)) + Character.toString(dato.charAt(39)) +
+     Character.toString(dato.charAt(31)) + Character.toString(dato.charAt(23)) + Character.toString(dato.charAt(15)) + Character.toString(dato.charAt(7)) +
+                    
+     Character.toString(dato.charAt(56)) + Character.toString(dato.charAt(48)) + Character.toString(dato.charAt(40)) + Character.toString(dato.charAt(32)) +
+     Character.toString(dato.charAt(24)) + Character.toString(dato.charAt(16)) + Character.toString(dato.charAt(8)) + Character.toString(dato.charAt(0)) +
+                    
+     Character.toString(dato.charAt(58)) + Character.toString(dato.charAt(50)) + Character.toString(dato.charAt(42)) + Character.toString(dato.charAt(34)) +
+     Character.toString(dato.charAt(26)) + Character.toString(dato.charAt(18)) + Character.toString(dato.charAt(10)) + Character.toString(dato.charAt(2)) +
+                    
+     Character.toString(dato.charAt(60)) + Character.toString(dato.charAt(52)) + Character.toString(dato.charAt(44)) + Character.toString(dato.charAt(36)) +
+     Character.toString(dato.charAt(28)) + Character.toString(dato.charAt(20)) + Character.toString(dato.charAt(12)) + Character.toString(dato.charAt(4)) +
+                    
+     Character.toString(dato.charAt(62)) + Character.toString(dato.charAt(54)) + Character.toString(dato.charAt(46)) + Character.toString(dato.charAt(38)) +
+     Character.toString(dato.charAt(10)) + Character.toString(dato.charAt(22)) + Character.toString(dato.charAt(14)) + Character.toString(dato.charAt(6));
+    // System.out.println(PI);
+   }
+   
+   //Método que hace la permutación final y despliega el cifrado
+   public void PermutacionFinal (String PF){
        
    }
 }
