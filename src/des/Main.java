@@ -18,7 +18,6 @@ public class Main {
     public static void main(String[] args) {
         Des obj = new Des();
         obj.Des();
-        // TODO code application logic here
     }
     
 }

@@ -12,17 +12,29 @@ public class Des  {
   String Kf[] = new String [17];
   String D[] = new String [17];
   String R[] = new String [17];
+  String Sf[] = new String [17];
   String L[] = new String [17];
+   String PI;
+   String PF;
    
   //Método que realiza el DES
    public void Des(/*String llave*/){
-       String PI = "";
+       
+       String RXor = "";
+       
        
        Rondas(llave);
        Llaves();
-       PermutacionInicial(PI);
-            
-    }
+       PermutacionInicial();
+       L[0] = PI.substring(0, 32);
+       R[0] = PI.substring(32,64);
+       for (int i = 1; i <= 16; i++) {
+       
+      }
+       
+       PermutacionFinal(R[16]);
+       System.out.println(PF);
+   }
    
    //Método que hace un Xor entre dos palabras
    public void Xor(String P1, String P2){
@@ -205,1144 +217,1344 @@ public class Des  {
        String S[] = new String [8];
        String m[] = new String [8];
        String n[] = new String [8];
-       
+       String Si;
        //Se dividen las S y se les asignan valores a m y n
        for (int i = 0; i < 8; i++) {
            if (i == 0){
                m[i] = Character.toString(ss.charAt(0)) + Character.toString(ss.charAt(5));
-               n[i] = ss.substring(1, 4);
-               
-               if (m[i].equals("00")){
-                   if (n[i].equals("0000")){
-                     S[i] ="";  
+               n[i] = ss.substring(1, 5);
+                   if (n[i].equals(0000)){
+                       if (m[i].equals("00")){
+                           S[i]="1110";
+                       } else if (m[i].equals("01")){
+                           S[i]="0000";
+                       }else if (m[i].equals("10")){
+                           S[i]="0100";
+                       }else if (m[i].equals("11")){
+                           S[i]="1111";
+                       }
+                     
                    }else if (n[i].equals("0001")){
-                     S[i] ="";  
+                       if (m[i].equals("00")){
+                           S[i]="0100";
+                       } else if (m[i].equals("01")){
+                           S[i]="1111";
+                       }else if (m[i].equals("10")){
+                           S[i]="0001";
+                       }else if (m[i].equals("11")){
+                           S[i]="1100";
+                       }
                    }else if (n[i].equals("0010")){
-                     S[i] ="";  
+                       if (m[i].equals("00")){
+                           S[i]="1101";
+                       } else if (m[i].equals("01")){
+                           S[i]="0111";
+                       }else if (m[i].equals("10")){
+                           S[i]="1110";
+                       }else if (m[i].equals("11")){
+                           S[i]="1000";
+                       }
                    }else if (n[i].equals("0011")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0001";
+                       } else if (m[i].equals("01")){
+                           S[i]="0100";
+                       }else if (m[i].equals("10")){
+                           S[i]="1000";
+                       }else if (m[i].equals("11")){
+                           S[i]="0010";
+                       }
                    }else if (n[i].equals("0100")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0010";
+                       } else if (m[i].equals("01")){
+                           S[i]="1110";
+                       }else if (m[i].equals("10")){
+                           S[i]="1101";
+                       }else if (m[i].equals("11")){
+                           S[i]="0100";
+                       }
                    }else if (n[i].equals("0101")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1111";
+                       } else if (m[i].equals("01")){
+                           S[i]="0010";
+                       }else if (m[i].equals("10")){
+                           S[i]="0110";
+                       }else if (m[i].equals("11")){
+                           S[i]="1001";
+                       } 
                    }else if (n[i].equals("0110")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1011";
+                       } else if (m[i].equals("01")){
+                           S[i]="1101";
+                       }else if (m[i].equals("10")){
+                           S[i]="0010";
+                       }else if (m[i].equals("11")){
+                           S[i]="0001";
+                       }  
                    }else if (n[i].equals("0111")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="1000";
+                       } else if (m[i].equals("01")){
+                           S[i]="0001";
+                       }else if (m[i].equals("10")){
+                           S[i]="1011";
+                       }else if (m[i].equals("11")){
+                           S[i]="0111";
+                       }
                    }else if (n[i].equals("1000")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0011";
+                       } else if (m[i].equals("01")){
+                           S[i]="1010";
+                       }else if (m[i].equals("10")){
+                           S[i]="1111";
+                       }else if (m[i].equals("11")){
+                           S[i]="0101";
+                       }
                    }else if (n[i].equals("1001")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="1010";
+                       } else if (m[i].equals("01")){
+                           S[i]="0110";
+                       }else if (m[i].equals("10")){
+                           S[i]="1100";
+                       }else if (m[i].equals("11")){
+                           S[i]="1011";
+                       }
                    }else if (n[i].equals("1010")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0110";
+                       } else if (m[i].equals("01")){
+                           S[i]="1100";
+                       }else if (m[i].equals("10")){
+                           S[i]="1001";
+                       }else if (m[i].equals("11")){
+                           S[i]="0011";
+                       } 
                    }else if (n[i].equals("1011")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="1100";
+                       } else if (m[i].equals("01")){
+                           S[i]="1011";
+                       }else if (m[i].equals("10")){
+                           S[i]="0111";
+                       }else if (m[i].equals("11")){
+                           S[i]="1110";
+                       }
                    }else if (n[i].equals("1100")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0101";
+                       } else if (m[i].equals("01")){
+                           S[i]="1001";
+                       }else if (m[i].equals("10")){
+                           S[i]="0011";
+                       }else if (m[i].equals("11")){
+                           S[i]="1010";
+                       }  
                    }else if (n[i].equals("1101")){
-                     S[i] ="";  
+                    if (m[i].equals("00")){
+                           S[i]="1001";
+                       } else if (m[i].equals("01")){
+                           S[i]="0101";
+                       }else if (m[i].equals("10")){
+                           S[i]="1010";
+                       }else if (m[i].equals("11")){
+                           S[i]="0";
+                       }
                    }else if (n[i].equals("1110")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0000";
+                       } else if (m[i].equals("01")){
+                           S[i]="0011";
+                       }else if (m[i].equals("10")){
+                           S[i]="0101";
+                       }else if (m[i].equals("11")){
+                           S[i]="0110";
+                       }  
                    }else if (n[i].equals("1111")){
-                     S[i] ="";  
+                    if (m[i].equals("00")){
+                           S[i]="0111";
+                       } else if (m[i].equals("01")){
+                           S[i]="1000";
+                       }else if (m[i].equals("10")){
+                           S[i]="0000";
+                       }else if (m[i].equals("11")){
+                           S[i]="1101";
+                       } 
                    }
-               }else if (m[i].equals("01")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }else if (m[i].equals("10")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }else if (m[i].equals("11")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }
-               
            } else if (i == 1){
                m[i] = Character.toString(ss.charAt(6)) + Character.toString(ss.charAt(11));
-               n[i] = ss.substring(7, 10);
-               if (m[i].equals("00")){
-                   if (n[i].equals("0000")){
-                     S[i] ="";  
+               n[i] = ss.substring(7, 11);
+               if (n[i].equals("0000")){
+                       if (m[i].equals("00")){
+                           S[i]="1111";
+                       } else if (m[i].equals("01")){
+                           S[i]="0011";
+                       }else if (m[i].equals("10")){
+                           S[i]="0000";
+                       }else if (m[i].equals("11")){
+                           S[i]="1101";
+                       }
+                     
                    }else if (n[i].equals("0001")){
-                     S[i] ="";  
+                       if (m[i].equals("00")){
+                           S[i]="0001";
+                       } else if (m[i].equals("01")){
+                           S[i]="1101";
+                       }else if (m[i].equals("10")){
+                           S[i]="1110";
+                       }else if (m[i].equals("11")){
+                           S[i]="1000";
+                       }
                    }else if (n[i].equals("0010")){
-                     S[i] ="";  
+                       if (m[i].equals("00")){
+                           S[i]="1000";
+                       } else if (m[i].equals("01")){
+                           S[i]="0100";
+                       }else if (m[i].equals("10")){
+                           S[i]="0111";
+                       }else if (m[i].equals("11")){
+                           S[i]="1010";
+                       }
                    }else if (n[i].equals("0011")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1110";
+                       } else if (m[i].equals("01")){
+                           S[i]="0111";
+                       }else if (m[i].equals("10")){
+                           S[i]="1011";
+                       }else if (m[i].equals("11")){
+                           S[i]="0001";
+                       }
                    }else if (n[i].equals("0100")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0110";
+                       } else if (m[i].equals("01")){
+                           S[i]="1111";
+                       }else if (m[i].equals("10")){
+                           S[i]="1010";
+                       }else if (m[i].equals("11")){
+                           S[i]="0011";
+                       }
                    }else if (n[i].equals("0101")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1011";
+                       } else if (m[i].equals("01")){
+                           S[i]="0010";
+                       }else if (m[i].equals("10")){
+                           S[i]="0100";
+                       }else if (m[i].equals("11")){
+                           S[i]="1111";
+                       } 
                    }else if (n[i].equals("0110")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0011";
+                       } else if (m[i].equals("01")){
+                           S[i]="1000";
+                       }else if (m[i].equals("10")){
+                           S[i]="1101";
+                       }else if (m[i].equals("11")){
+                           S[i]="0100";
+                       }  
                    }else if (n[i].equals("0111")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0100";
+                       } else if (m[i].equals("01")){
+                           S[i]="1110";
+                       }else if (m[i].equals("10")){
+                           S[i]="0001";
+                       }else if (m[i].equals("11")){
+                           S[i]="0010";
+                       }
                    }else if (n[i].equals("1000")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="1001";
+                       } else if (m[i].equals("01")){
+                           S[i]="1100";
+                       }else if (m[i].equals("10")){
+                           S[i]="0101";
+                       }else if (m[i].equals("11")){
+                           S[i]="1011";
+                       }
                    }else if (n[i].equals("1001")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0111";
+                       } else if (m[i].equals("01")){
+                           S[i]="0000";
+                       }else if (m[i].equals("10")){
+                           S[i]="1000";
+                       }else if (m[i].equals("11")){
+                           S[i]="0110";
+                       }
                    }else if (n[i].equals("1010")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0010";
+                       } else if (m[i].equals("01")){
+                           S[i]="0001";
+                       }else if (m[i].equals("10")){
+                           S[i]="1100";
+                       }else if (m[i].equals("11")){
+                           S[i]="0111";
+                       } 
                    }else if (n[i].equals("1011")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="1101";
+                       } else if (m[i].equals("01")){
+                           S[i]="1010";
+                       }else if (m[i].equals("10")){
+                           S[i]="0110";
+                       }else if (m[i].equals("11")){
+                           S[i]="1100";
+                       }
                    }else if (n[i].equals("1100")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1100";
+                       } else if (m[i].equals("01")){
+                           S[i]="0110";
+                       }else if (m[i].equals("10")){
+                           S[i]="1001";
+                       }else if (m[i].equals("11")){
+                           S[i]="0000";
+                       }  
                    }else if (n[i].equals("1101")){
-                     S[i] ="";  
+                    if (m[i].equals("00")){
+                           S[i]="0000";
+                       } else if (m[i].equals("01")){
+                           S[i]="1001";
+                       }else if (m[i].equals("10")){
+                           S[i]="0011";
+                       }else if (m[i].equals("11")){
+                           S[i]="0101";
+                       }
                    }else if (n[i].equals("1110")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0101";
+                       } else if (m[i].equals("01")){
+                           S[i]="1011";
+                       }else if (m[i].equals("10")){
+                           S[i]="0010";
+                       }else if (m[i].equals("11")){
+                           S[i]="1110";
+                       }  
                    }else if (n[i].equals("1111")){
-                     S[i] ="";  
+                    if (m[i].equals("00")){
+                           S[i]="1010";
+                       } else if (m[i].equals("01")){
+                           S[i]="0101";
+                       }else if (m[i].equals("10")){
+                           S[i]="1111";
+                       }else if (m[i].equals("11")){
+                           S[i]="1001";
+                       } 
                    }
-               }else if (m[i].equals("01")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }else if (m[i].equals("10")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }else if (m[i].equals("11")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }
            }
            else if (i == 2){
                m[i] = Character.toString(ss.charAt(12)) + Character.toString(ss.charAt(17));
-               n[i] = ss.substring(13, 16);
-               if (m[i].equals("00")){
-                   if (n[i].equals("0000")){
-                     S[i] ="";  
+               n[i] = ss.substring(13, 17);
+               if (n[i].equals("0000")){
+                       if (m[i].equals("00")){
+                           S[i]="1010";
+                       } else if (m[i].equals("01")){
+                           S[i]="1101";
+                       }else if (m[i].equals("10")){
+                           S[i]="1101";
+                       }else if (m[i].equals("11")){
+                           S[i]="0001";
+                       }
+                     
                    }else if (n[i].equals("0001")){
-                     S[i] ="";  
+                       if (m[i].equals("00")){
+                           S[i]="0000";
+                       } else if (m[i].equals("01")){
+                           S[i]="0111";
+                       }else if (m[i].equals("10")){
+                           S[i]="0110";
+                       }else if (m[i].equals("11")){
+                           S[i]="1010";
+                       }
                    }else if (n[i].equals("0010")){
-                     S[i] ="";  
+                       if (m[i].equals("00")){
+                           S[i]="1001";
+                       } else if (m[i].equals("01")){
+                           S[i]="000";
+                       }else if (m[i].equals("10")){
+                           S[i]="0100";
+                       }else if (m[i].equals("11")){
+                           S[i]="1101";
+                       }
                    }else if (n[i].equals("0011")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1110";
+                       } else if (m[i].equals("01")){
+                           S[i]="1001";
+                       }else if (m[i].equals("10")){
+                           S[i]="1001";
+                       }else if (m[i].equals("11")){
+                           S[i]="0000";
+                       }
                    }else if (n[i].equals("0100")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0110";
+                       } else if (m[i].equals("01")){
+                           S[i]="0011";
+                       }else if (m[i].equals("10")){
+                           S[i]="1000";
+                       }else if (m[i].equals("11")){
+                           S[i]="0110";
+                       }
                    }else if (n[i].equals("0101")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0011";
+                       } else if (m[i].equals("01")){
+                           S[i]="0100";
+                       }else if (m[i].equals("10")){
+                           S[i]="1111";
+                       }else if (m[i].equals("11")){
+                           S[i]="1001";
+                       } 
                    }else if (n[i].equals("0110")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1111";
+                       } else if (m[i].equals("01")){
+                           S[i]="0110";
+                       }else if (m[i].equals("10")){
+                           S[i]="0011";
+                       }else if (m[i].equals("11")){
+                           S[i]="1000";
+                       }  
                    }else if (n[i].equals("0111")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0101";
+                       } else if (m[i].equals("01")){
+                           S[i]="1010";
+                       }else if (m[i].equals("10")){
+                           S[i]="0000";
+                       }else if (m[i].equals("11")){
+                           S[i]="0111";
+                       }
                    }else if (n[i].equals("1000")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0001";
+                       } else if (m[i].equals("01")){
+                           S[i]="0010";
+                       }else if (m[i].equals("10")){
+                           S[i]="1011";
+                       }else if (m[i].equals("11")){
+                           S[i]="0100";
+                       }
                    }else if (n[i].equals("1001")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="1101";
+                       } else if (m[i].equals("01")){
+                           S[i]="1000";
+                       }else if (m[i].equals("10")){
+                           S[i]="0001";
+                       }else if (m[i].equals("11")){
+                           S[i]="1111";
+                       }
                    }else if (n[i].equals("1010")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="1100";
+                       } else if (m[i].equals("01")){
+                           S[i]="0101";
+                       }else if (m[i].equals("10")){
+                           S[i]="0010";
+                       }else if (m[i].equals("11")){
+                           S[i]="1110";
+                       } 
                    }else if (n[i].equals("1011")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0111";
+                       } else if (m[i].equals("01")){
+                           S[i]="1110";
+                       }else if (m[i].equals("10")){
+                           S[i]="1100";
+                       }else if (m[i].equals("11")){
+                           S[i]="0011";
+                       }
                    }else if (n[i].equals("1100")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1011";
+                       } else if (m[i].equals("01")){
+                           S[i]="1100";
+                       }else if (m[i].equals("10")){
+                           S[i]="0101";
+                       }else if (m[i].equals("11")){
+                           S[i]="1011";
+                       }  
                    }else if (n[i].equals("1101")){
-                     S[i] ="";  
+                    if (m[i].equals("00")){
+                           S[i]="0100";
+                       } else if (m[i].equals("01")){
+                           S[i]="1011";
+                       }else if (m[i].equals("10")){
+                           S[i]="1010";
+                       }else if (m[i].equals("11")){
+                           S[i]="0101";
+                       }
                    }else if (n[i].equals("1110")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0010";
+                       } else if (m[i].equals("01")){
+                           S[i]="1111";
+                       }else if (m[i].equals("10")){
+                           S[i]="1110";
+                       }else if (m[i].equals("11")){
+                           S[i]="0010";
+                       }  
                    }else if (n[i].equals("1111")){
-                     S[i] ="";  
+                    if (m[i].equals("00")){
+                           S[i]="1000";
+                       } else if (m[i].equals("01")){
+                           S[i]="0001";
+                       }else if (m[i].equals("10")){
+                           S[i]="0111";
+                       }else if (m[i].equals("11")){
+                           S[i]="1100";
+                       } 
                    }
-               }else if (m[i].equals("01")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }else if (m[i].equals("10")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }else if (m[i].equals("11")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }
            }
            else if (i == 3){
                m[i] = Character.toString(ss.charAt(18)) + Character.toString(ss.charAt(23));
-               n[i] = ss.substring(19, 22);
-               if (m[i].equals("00")){
-                   if (n[i].equals("0000")){
-                     S[i] ="";  
+               n[i] = ss.substring(19, 23);
+               if (n[i].equals("0000")){
+                       if (m[i].equals("00")){
+                           S[i]="0111";
+                       } else if (m[i].equals("01")){
+                           S[i]="1101";
+                       }else if (m[i].equals("10")){
+                           S[i]="1010";
+                       }else if (m[i].equals("11")){
+                           S[i]="0011";
+                       }
+                     
                    }else if (n[i].equals("0001")){
-                     S[i] ="";  
+                       if (m[i].equals("00")){
+                           S[i]="1101";
+                       } else if (m[i].equals("01")){
+                           S[i]="1000";
+                       }else if (m[i].equals("10")){
+                           S[i]="0110";
+                       }else if (m[i].equals("11")){
+                           S[i]="1111";
+                       }
                    }else if (n[i].equals("0010")){
-                     S[i] ="";  
+                       if (m[i].equals("00")){
+                           S[i]="1110";
+                       } else if (m[i].equals("01")){
+                           S[i]="1011";
+                       }else if (m[i].equals("10")){
+                           S[i]="1001";
+                       }else if (m[i].equals("11")){
+                           S[i]="000";
+                       }
                    }else if (n[i].equals("0011")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0011";
+                       } else if (m[i].equals("01")){
+                           S[i]="0101";
+                       }else if (m[i].equals("10")){
+                           S[i]="0000";
+                       }else if (m[i].equals("11")){
+                           S[i]="0110";
+                       }
                    }else if (n[i].equals("0100")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0000";
+                       } else if (m[i].equals("01")){
+                           S[i]="0110";
+                       }else if (m[i].equals("10")){
+                           S[i]="1100";
+                       }else if (m[i].equals("11")){
+                           S[i]="1010";
+                       }
                    }else if (n[i].equals("0101")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0110";
+                       } else if (m[i].equals("01")){
+                           S[i]="1111";
+                       }else if (m[i].equals("10")){
+                           S[i]="1011";
+                       }else if (m[i].equals("11")){
+                           S[i]="0001";
+                       } 
                    }else if (n[i].equals("0110")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1001";
+                       } else if (m[i].equals("01")){
+                           S[i]="0000";
+                       }else if (m[i].equals("10")){
+                           S[i]="0111";
+                       }else if (m[i].equals("11")){
+                           S[i]="1101";
+                       }  
                    }else if (n[i].equals("0111")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="1010";
+                       } else if (m[i].equals("01")){
+                           S[i]="0110";
+                       }else if (m[i].equals("10")){
+                           S[i]="1101";
+                       }else if (m[i].equals("11")){
+                           S[i]="1000";
+                       }
                    }else if (n[i].equals("1000")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="00001";
+                       } else if (m[i].equals("01")){
+                           S[i]="0100";
+                       }else if (m[i].equals("10")){
+                           S[i]="1111";
+                       }else if (m[i].equals("11")){
+                           S[i]="1001";
+                       }
                    }else if (n[i].equals("1001")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0010";
+                       } else if (m[i].equals("01")){
+                           S[i]="0111";
+                       }else if (m[i].equals("10")){
+                           S[i]="0001";
+                       }else if (m[i].equals("11")){
+                           S[i]="0100";
+                       }
                    }else if (n[i].equals("1010")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="1000";
+                       } else if (m[i].equals("01")){
+                           S[i]="0010";
+                       }else if (m[i].equals("10")){
+                           S[i]="0011";
+                       }else if (m[i].equals("11")){
+                           S[i]="0101";
+                       } 
                    }else if (n[i].equals("1011")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0101";
+                       } else if (m[i].equals("01")){
+                           S[i]="1100";
+                       }else if (m[i].equals("10")){
+                           S[i]="1110";
+                       }else if (m[i].equals("11")){
+                           S[i]="1011";
+                       }
                    }else if (n[i].equals("1100")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1011";
+                       } else if (m[i].equals("01")){
+                           S[i]="0001";
+                       }else if (m[i].equals("10")){
+                           S[i]="0101";
+                       }else if (m[i].equals("11")){
+                           S[i]="1100";
+                       }  
                    }else if (n[i].equals("1101")){
-                     S[i] ="";  
+                    if (m[i].equals("00")){
+                           S[i]="1100";
+                       } else if (m[i].equals("01")){
+                           S[i]="1010";
+                       }else if (m[i].equals("10")){
+                           S[i]="0010";
+                       }else if (m[i].equals("11")){
+                           S[i]="0111";
+                       }
                    }else if (n[i].equals("1110")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0100";
+                       } else if (m[i].equals("01")){
+                           S[i]="1110";
+                       }else if (m[i].equals("10")){
+                           S[i]="1000";
+                       }else if (m[i].equals("11")){
+                           S[i]="0010";
+                       }  
                    }else if (n[i].equals("1111")){
-                     S[i] ="";  
+                    if (m[i].equals("00")){
+                           S[i]="1111";
+                       } else if (m[i].equals("01")){
+                           S[i]="1001";
+                       }else if (m[i].equals("10")){
+                           S[i]="0100";
+                       }else if (m[i].equals("11")){
+                           S[i]="1110";
+                       } 
                    }
-               }else if (m[i].equals("01")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }else if (m[i].equals("10")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }else if (m[i].equals("11")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }
            }
            else if (i == 4){
                m[i] = Character.toString(ss.charAt(24)) + Character.toString(ss.charAt(29));
-               n[i] = ss.substring(25, 28);
-               if (m[i].equals("00")){
-                   if (n[i].equals("0000")){
-                     S[i] ="";  
+               n[i] = ss.substring(25, 29);
+               if (n[i].equals("0000")){
+                       if (m[i].equals("00")){
+                           S[i]="0010";
+                       } else if (m[i].equals("01")){
+                           S[i]="1110";
+                       }else if (m[i].equals("10")){
+                           S[i]="0100";
+                       }else if (m[i].equals("11")){
+                           S[i]="1011";
+                       }
+                     
                    }else if (n[i].equals("0001")){
-                     S[i] ="";  
+                       if (m[i].equals("00")){
+                           S[i]="1100";
+                       } else if (m[i].equals("01")){
+                           S[i]="1011";
+                       }else if (m[i].equals("10")){
+                           S[i]="0010";
+                       }else if (m[i].equals("11")){
+                           S[i]="1000";
+                       }
                    }else if (n[i].equals("0010")){
-                     S[i] ="";  
+                       if (m[i].equals("00")){
+                           S[i]="0100";
+                       } else if (m[i].equals("01")){
+                           S[i]="0010";
+                       }else if (m[i].equals("10")){
+                           S[i]="0001";
+                       }else if (m[i].equals("11")){
+                           S[i]="1100";
+                       }
                    }else if (n[i].equals("0011")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0001";
+                       } else if (m[i].equals("01")){
+                           S[i]="1100";
+                       }else if (m[i].equals("10")){
+                           S[i]="1011";
+                       }else if (m[i].equals("11")){
+                           S[i]="0111";
+                       }
                    }else if (n[i].equals("0100")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0111";
+                       } else if (m[i].equals("01")){
+                           S[i]="0100";
+                       }else if (m[i].equals("10")){
+                           S[i]="1010";
+                       }else if (m[i].equals("11")){
+                           S[i]="0001";
+                       }
                    }else if (n[i].equals("0101")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1010";
+                       } else if (m[i].equals("01")){
+                           S[i]="0111";
+                       }else if (m[i].equals("10")){
+                           S[i]="1101";
+                       }else if (m[i].equals("11")){
+                           S[i]="1111";
+                       } 
                    }else if (n[i].equals("0110")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1011";
+                       } else if (m[i].equals("01")){
+                           S[i]="1101";
+                       }else if (m[i].equals("10")){
+                           S[i]="0111";
+                       }else if (m[i].equals("11")){
+                           S[i]="0010";
+                       }  
                    }else if (n[i].equals("0111")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0110";
+                       } else if (m[i].equals("01")){
+                           S[i]="0001";
+                       }else if (m[i].equals("10")){
+                           S[i]="1000";
+                       }else if (m[i].equals("11")){
+                           S[i]="1101";
+                       }
                    }else if (n[i].equals("1000")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="1000";
+                       } else if (m[i].equals("01")){
+                           S[i]="0101";
+                       }else if (m[i].equals("10")){
+                           S[i]="1111";
+                       }else if (m[i].equals("11")){
+                           S[i]="0110";
+                       }
                    }else if (n[i].equals("1001")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0101";
+                       } else if (m[i].equals("01")){
+                           S[i]="0000";
+                       }else if (m[i].equals("10")){
+                           S[i]="1001";
+                       }else if (m[i].equals("11")){
+                           S[i]="1111";
+                       }
                    }else if (n[i].equals("1010")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0011";
+                       } else if (m[i].equals("01")){
+                           S[i]="1111";
+                       }else if (m[i].equals("10")){
+                           S[i]="1100";
+                       }else if (m[i].equals("11")){
+                           S[i]="0000";
+                       } 
                    }else if (n[i].equals("1011")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="1111";
+                       } else if (m[i].equals("01")){
+                           S[i]="1010";
+                       }else if (m[i].equals("10")){
+                           S[i]="0101";
+                       }else if (m[i].equals("11")){
+                           S[i]="1001";
+                       }
                    }else if (n[i].equals("1100")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1101";
+                       } else if (m[i].equals("01")){
+                           S[i]="0011";
+                       }else if (m[i].equals("10")){
+                           S[i]="0110";
+                       }else if (m[i].equals("11")){
+                           S[i]="1010";
+                       }  
                    }else if (n[i].equals("1101")){
-                     S[i] ="";  
+                    if (m[i].equals("00")){
+                           S[i]="0000";
+                       } else if (m[i].equals("01")){
+                           S[i]="1001";
+                       }else if (m[i].equals("10")){
+                           S[i]="0011";
+                       }else if (m[i].equals("11")){
+                           S[i]="0100";
+                       }
                    }else if (n[i].equals("1110")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1110";
+                       } else if (m[i].equals("01")){
+                           S[i]="1000";
+                       }else if (m[i].equals("10")){
+                           S[i]="0000";
+                       }else if (m[i].equals("11")){
+                           S[i]="0101";
+                       }  
                    }else if (n[i].equals("1111")){
-                     S[i] ="";  
+                    if (m[i].equals("00")){
+                           S[i]="1001";
+                       } else if (m[i].equals("01")){
+                           S[i]="0110";
+                       }else if (m[i].equals("10")){
+                           S[i]="1110";
+                       }else if (m[i].equals("11")){
+                           S[i]="0011";
+                       } 
                    }
-               }else if (m[i].equals("01")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }else if (m[i].equals("10")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }else if (m[i].equals("11")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }
            }
            else if (i == 5){
                m[i] = Character.toString(ss.charAt(30)) + Character.toString(ss.charAt(35));
-               n[i] = ss.substring(31, 34);
-               if (m[i].equals("00")){
-                   if (n[i].equals("0000")){
-                     S[i] ="";  
+               n[i] = ss.substring(31, 35);
+               if (n[i].equals("0000")){
+                       if (m[i].equals("00")){
+                           S[i]="1100";
+                       } else if (m[i].equals("01")){
+                           S[i]="1010";
+                       }else if (m[i].equals("10")){
+                           S[i]="1001";
+                       }else if (m[i].equals("11")){
+                           S[i]="0100";
+                       }
+                     
                    }else if (n[i].equals("0001")){
-                     S[i] ="";  
+                       if (m[i].equals("00")){
+                           S[i]="0001";
+                       } else if (m[i].equals("01")){
+                           S[i]="1111";
+                       }else if (m[i].equals("10")){
+                           S[i]="1110";
+                       }else if (m[i].equals("11")){
+                           S[i]="0011";
+                       }
                    }else if (n[i].equals("0010")){
-                     S[i] ="";  
+                       if (m[i].equals("00")){
+                           S[i]="1010";
+                       } else if (m[i].equals("01")){
+                           S[i]="0100";
+                       }else if (m[i].equals("10")){
+                           S[i]="1111";
+                       }else if (m[i].equals("11")){
+                           S[i]="0010";
+                       }
                    }else if (n[i].equals("0011")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1111";
+                       } else if (m[i].equals("01")){
+                           S[i]="0010";
+                       }else if (m[i].equals("10")){
+                           S[i]="0101";
+                       }else if (m[i].equals("11")){
+                           S[i]="1100";
+                       }
                    }else if (n[i].equals("0100")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1001";
+                       } else if (m[i].equals("01")){
+                           S[i]="0111";
+                       }else if (m[i].equals("10")){
+                           S[i]="0010";
+                       }else if (m[i].equals("11")){
+                           S[i]="1001";
+                       }
                    }else if (n[i].equals("0101")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0010";
+                       } else if (m[i].equals("01")){
+                           S[i]="1100";
+                       }else if (m[i].equals("10")){
+                           S[i]="1000";
+                       }else if (m[i].equals("11")){
+                           S[i]="0101";
+                       } 
                    }else if (n[i].equals("0110")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0110";
+                       } else if (m[i].equals("01")){
+                           S[i]="1001";
+                       }else if (m[i].equals("10")){
+                           S[i]="1100";
+                       }else if (m[i].equals("11")){
+                           S[i]="1111";
+                       }  
                    }else if (n[i].equals("0111")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="1000";
+                       } else if (m[i].equals("01")){
+                           S[i]="0101";
+                       }else if (m[i].equals("10")){
+                           S[i]="0011";
+                       }else if (m[i].equals("11")){
+                           S[i]="1010";
+                       }
                    }else if (n[i].equals("1000")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0000";
+                       } else if (m[i].equals("01")){
+                           S[i]="0110";
+                       }else if (m[i].equals("10")){
+                           S[i]="0111";
+                       }else if (m[i].equals("11")){
+                           S[i]="1011";
+                       }
                    }else if (n[i].equals("1001")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="1101";
+                       } else if (m[i].equals("01")){
+                           S[i]="0001";
+                       }else if (m[i].equals("10")){
+                           S[i]="0000";
+                       }else if (m[i].equals("11")){
+                           S[i]="1110";
+                       }
                    }else if (n[i].equals("1010")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0011";
+                       } else if (m[i].equals("01")){
+                           S[i]="1101";
+                       }else if (m[i].equals("10")){
+                           S[i]="0100";
+                       }else if (m[i].equals("11")){
+                           S[i]="0001";
+                       } 
                    }else if (n[i].equals("1011")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0100";
+                       } else if (m[i].equals("01")){
+                           S[i]="1110";
+                       }else if (m[i].equals("10")){
+                           S[i]="1010";
+                       }else if (m[i].equals("11")){
+                           S[i]="0111";
+                       }
                    }else if (n[i].equals("1100")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1110";
+                       } else if (m[i].equals("01")){
+                           S[i]="0000";
+                       }else if (m[i].equals("10")){
+                           S[i]="0001";
+                       }else if (m[i].equals("11")){
+                           S[i]="0110";
+                       }  
                    }else if (n[i].equals("1101")){
-                     S[i] ="";  
+                    if (m[i].equals("00")){
+                           S[i]="0111";
+                       } else if (m[i].equals("01")){
+                           S[i]="1011";
+                       }else if (m[i].equals("10")){
+                           S[i]="1101";
+                       }else if (m[i].equals("11")){
+                           S[i]="0000";
+                       }
                    }else if (n[i].equals("1110")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0101";
+                       } else if (m[i].equals("01")){
+                           S[i]="0011";
+                       }else if (m[i].equals("10")){
+                           S[i]="1011";
+                       }else if (m[i].equals("11")){
+                           S[i]="1000";
+                       }  
                    }else if (n[i].equals("1111")){
-                     S[i] ="";  
+                    if (m[i].equals("00")){
+                           S[i]="1011";
+                       } else if (m[i].equals("01")){
+                           S[i]="1000";
+                       }else if (m[i].equals("10")){
+                           S[i]="0110";
+                       }else if (m[i].equals("11")){
+                           S[i]="1101";
+                       } 
                    }
-               }else if (m[i].equals("01")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }else if (m[i].equals("10")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }else if (m[i].equals("11")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }
            }
            else if (i == 6){
                m[i] = Character.toString(ss.charAt(36)) + Character.toString(ss.charAt(41));
-               n[i] = ss.substring(37, 40);
-               if (m[i].equals("00")){
-                   if (n[i].equals("0000")){
-                     S[i] ="";  
+               n[i] = ss.substring(37, 41);
+               if (n[i].equals("0000")){
+                       if (m[i].equals("00")){
+                           S[i]="0100";
+                       } else if (m[i].equals("01")){
+                           S[i]="1101";
+                       }else if (m[i].equals("10")){
+                           S[i]="0001";
+                       }else if (m[i].equals("11")){
+                           S[i]="0110";
+                       }
+                     
                    }else if (n[i].equals("0001")){
-                     S[i] ="";  
+                       if (m[i].equals("00")){
+                           S[i]="1011";
+                       } else if (m[i].equals("01")){
+                           S[i]="0000";
+                       }else if (m[i].equals("10")){
+                           S[i]="0100";
+                       }else if (m[i].equals("11")){
+                           S[i]="1011";
+                       }
                    }else if (n[i].equals("0010")){
-                     S[i] ="";  
+                       if (m[i].equals("00")){
+                           S[i]="0010";
+                       } else if (m[i].equals("01")){
+                           S[i]="1011";
+                       }else if (m[i].equals("10")){
+                           S[i]="1011";
+                       }else if (m[i].equals("11")){
+                           S[i]="1101";
+                       }
                    }else if (n[i].equals("0011")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1110";
+                       } else if (m[i].equals("01")){
+                           S[i]="0111";
+                       }else if (m[i].equals("10")){
+                           S[i]="1101";
+                       }else if (m[i].equals("11")){
+                           S[i]="1000";
+                       }
                    }else if (n[i].equals("0100")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1111";
+                       } else if (m[i].equals("01")){
+                           S[i]="0100";
+                       }else if (m[i].equals("10")){
+                           S[i]="1100";
+                       }else if (m[i].equals("11")){
+                           S[i]="0001";
+                       }
                    }else if (n[i].equals("0101")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0000";
+                       } else if (m[i].equals("01")){
+                           S[i]="1001";
+                       }else if (m[i].equals("10")){
+                           S[i]="0011";
+                       }else if (m[i].equals("11")){
+                           S[i]="0100";
+                       } 
                    }else if (n[i].equals("0110")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1000";
+                       } else if (m[i].equals("01")){
+                           S[i]="0001";
+                       }else if (m[i].equals("10")){
+                           S[i]="0111";
+                       }else if (m[i].equals("11")){
+                           S[i]="1010";
+                       }  
                    }else if (n[i].equals("0111")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="1101";
+                       } else if (m[i].equals("01")){
+                           S[i]="1010";
+                       }else if (m[i].equals("10")){
+                           S[i]="1110";
+                       }else if (m[i].equals("11")){
+                           S[i]="0111";
+                       }
                    }else if (n[i].equals("1000")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0011";
+                       } else if (m[i].equals("01")){
+                           S[i]="1110";
+                       }else if (m[i].equals("10")){
+                           S[i]="1010";
+                       }else if (m[i].equals("11")){
+                           S[i]="1001";
+                       }
                    }else if (n[i].equals("1001")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="1100";
+                       } else if (m[i].equals("01")){
+                           S[i]="0011";
+                       }else if (m[i].equals("10")){
+                           S[i]="1111";
+                       }else if (m[i].equals("11")){
+                           S[i]="0101";
+                       }
                    }else if (n[i].equals("1010")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="1001";
+                       } else if (m[i].equals("01")){
+                           S[i]="0101";
+                       }else if (m[i].equals("10")){
+                           S[i]="0110";
+                       }else if (m[i].equals("11")){
+                           S[i]="0000";
+                       } 
                    }else if (n[i].equals("1011")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0111";
+                       } else if (m[i].equals("01")){
+                           S[i]="1100";
+                       }else if (m[i].equals("10")){
+                           S[i]="1000";
+                       }else if (m[i].equals("11")){
+                           S[i]="1111";
+                       }
                    }else if (n[i].equals("1100")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0101";
+                       } else if (m[i].equals("01")){
+                           S[i]="0010";
+                       }else if (m[i].equals("10")){
+                           S[i]="0000";
+                       }else if (m[i].equals("11")){
+                           S[i]="1110";
+                       }  
                    }else if (n[i].equals("1101")){
-                     S[i] ="";  
+                    if (m[i].equals("00")){
+                           S[i]="1010";
+                       } else if (m[i].equals("01")){
+                           S[i]="1111";
+                       }else if (m[i].equals("10")){
+                           S[i]="0101";
+                       }else if (m[i].equals("11")){
+                           S[i]="0010";
+                       }
                    }else if (n[i].equals("1110")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0110";
+                       } else if (m[i].equals("01")){
+                           S[i]="1000";
+                       }else if (m[i].equals("10")){
+                           S[i]="1001";
+                       }else if (m[i].equals("11")){
+                           S[i]="0011";
+                       }  
                    }else if (n[i].equals("1111")){
-                     S[i] ="";  
+                    if (m[i].equals("00")){
+                           S[i]="0001";
+                       } else if (m[i].equals("01")){
+                           S[i]="0110";
+                       }else if (m[i].equals("10")){
+                           S[i]="0010";
+                       }else if (m[i].equals("11")){
+                           S[i]="1100";
+                       } 
                    }
-               }else if (m[i].equals("01")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }else if (m[i].equals("10")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }else if (m[i].equals("11")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }
            }
            else if (i == 7){
                m[i] = Character.toString(ss.charAt(42)) + Character.toString(ss.charAt(47));
-               n[i] = ss.substring(43, 46);
-               if (m[i].equals("00")){
-                   if (n[i].equals("0000")){
-                     S[i] ="";  
+               n[i] = ss.substring(43, 47);
+               if (n[i].equals("0000")){
+                       if (m[i].equals("00")){
+                           S[i]="1101";
+                       } else if (m[i].equals("01")){
+                           S[i]="0001";
+                       }else if (m[i].equals("10")){
+                           S[i]="0111";
+                       }else if (m[i].equals("11")){
+                           S[i]="0010";
+                       }
+                     
                    }else if (n[i].equals("0001")){
-                     S[i] ="";  
+                       if (m[i].equals("00")){
+                           S[i]="0010";
+                       } else if (m[i].equals("01")){
+                           S[i]="1111";
+                       }else if (m[i].equals("10")){
+                           S[i]="1011";
+                       }else if (m[i].equals("11")){
+                           S[i]="0001";
+                       }
                    }else if (n[i].equals("0010")){
-                     S[i] ="";  
+                       if (m[i].equals("00")){
+                           S[i]="1000";
+                       } else if (m[i].equals("01")){
+                           S[i]="1101";
+                       }else if (m[i].equals("10")){
+                           S[i]="0100";
+                       }else if (m[i].equals("11")){
+                           S[i]="1110";
+                       }
                    }else if (n[i].equals("0011")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0100";
+                       } else if (m[i].equals("01")){
+                           S[i]="1000";
+                       }else if (m[i].equals("10")){
+                           S[i]="0001";
+                       }else if (m[i].equals("11")){
+                           S[i]="0111";
+                       }
                    }else if (n[i].equals("0100")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0110";
+                       } else if (m[i].equals("01")){
+                           S[i]="1010";
+                       }else if (m[i].equals("10")){
+                           S[i]="1001";
+                       }else if (m[i].equals("11")){
+                           S[i]="0100";
+                       }
                    }else if (n[i].equals("0101")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1111";
+                       } else if (m[i].equals("01")){
+                           S[i]="0011";
+                       }else if (m[i].equals("10")){
+                           S[i]="1100";
+                       }else if (m[i].equals("11")){
+                           S[i]="1010";
+                       } 
                    }else if (n[i].equals("0110")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1011";
+                       } else if (m[i].equals("01")){
+                           S[i]="0111";
+                       }else if (m[i].equals("10")){
+                           S[i]="1110";
+                       }else if (m[i].equals("11")){
+                           S[i]="1000";
+                       }  
                    }else if (n[i].equals("0111")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0001";
+                       } else if (m[i].equals("01")){
+                           S[i]="0100";
+                       }else if (m[i].equals("10")){
+                           S[i]="0010";
+                       }else if (m[i].equals("11")){
+                           S[i]="1101";
+                       }
                    }else if (n[i].equals("1000")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="1010";
+                       } else if (m[i].equals("01")){
+                           S[i]="1100";
+                       }else if (m[i].equals("10")){
+                           S[i]="0000";
+                       }else if (m[i].equals("11")){
+                           S[i]="1111";
+                       }
                    }else if (n[i].equals("1001")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="1001";
+                       } else if (m[i].equals("01")){
+                           S[i]="0101";
+                       }else if (m[i].equals("10")){
+                           S[i]="0110";
+                       }else if (m[i].equals("11")){
+                           S[i]="1100";
+                       }
                    }else if (n[i].equals("1010")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="0011";
+                       } else if (m[i].equals("01")){
+                           S[i]="0110";
+                       }else if (m[i].equals("10")){
+                           S[i]="1010";
+                       }else if (m[i].equals("11")){
+                           S[i]="1001";
+                       } 
                    }else if (n[i].equals("1011")){
-                      S[i] =""; 
+                      if (m[i].equals("00")){
+                           S[i]="1110";
+                       } else if (m[i].equals("01")){
+                           S[i]="1011";
+                       }else if (m[i].equals("10")){
+                           S[i]="1101";
+                       }else if (m[i].equals("11")){
+                           S[i]="0000";
+                       }
                    }else if (n[i].equals("1100")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="0101";
+                       } else if (m[i].equals("01")){
+                           S[i]="0000";
+                       }else if (m[i].equals("10")){
+                           S[i]="1111";
+                       }else if (m[i].equals("11")){
+                           S[i]="0011";
+                       }  
                    }else if (n[i].equals("1101")){
-                     S[i] ="";  
+                    if (m[i].equals("00")){
+                           S[i]="0000";
+                       } else if (m[i].equals("01")){
+                           S[i]="1110";
+                       }else if (m[i].equals("10")){
+                           S[i]="0011";
+                       }else if (m[i].equals("11")){
+                           S[i]="0101";
+                       }
                    }else if (n[i].equals("1110")){
-                     S[i] ="";  
+                     if (m[i].equals("00")){
+                           S[i]="1100";
+                       } else if (m[i].equals("01")){
+                           S[i]="1001";
+                       }else if (m[i].equals("10")){
+                           S[i]="0101";
+                       }else if (m[i].equals("11")){
+                           S[i]="0110";
+                       }  
                    }else if (n[i].equals("1111")){
-                     S[i] ="";  
+                    if (m[i].equals("00")){
+                           S[i]="0111";
+                       } else if (m[i].equals("01")){
+                           S[i]="0010";
+                       }else if (m[i].equals("10")){
+                           S[i]="1000";
+                       }else if (m[i].equals("11")){
+                           S[i]="1011";
+                       } 
                    }
-               }else if (m[i].equals("01")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }else if (m[i].equals("10")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }else if (m[i].equals("11")){
-                  if (n[i].equals("0000")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0001")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0010")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0011")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("0111")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1000")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1001")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1010")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1011")){
-                      S[i] =""; 
-                   }else if (n[i].equals("1100")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1101")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1110")){
-                     S[i] ="";  
-                   }else if (n[i].equals("1111")){
-                     S[i] ="";  
-                   } 
-               }
            }
+           Si= S[i];
+           System.out.print(Si);
        }
    }
    
    //Método que hace la permutación del dato
-   public void PermutacionInicial(String PI){
-       PI = Character.toString(dato.charAt(57)) + Character.toString(dato.charAt(49)) + Character.toString(dato.charAt(41)) + Character.toString(dato.charAt(33)) +
+   public void PermutacionInicial(){
+      PI = Character.toString(dato.charAt(57)) + Character.toString(dato.charAt(49)) + Character.toString(dato.charAt(41)) + Character.toString(dato.charAt(33)) +
       Character.toString(dato.charAt(25)) + Character.toString(dato.charAt(17)) + Character.toString(dato.charAt(9)) + Character.toString(dato.charAt(1)) +
                     
      Character.toString(dato.charAt(59)) + Character.toString(dato.charAt(51)) + Character.toString(dato.charAt(43)) + Character.toString(dato.charAt(35)) +
@@ -1369,8 +1581,47 @@ public class Des  {
    }
    
    //Método que hace la permutación final y despliega el cifrado
-   public void PermutacionFinal (String PF){
-       
+   public void PermutacionFinal (String fin){
+       PF = Character.toString(fin.charAt(39)) + Character.toString(fin.charAt(7)) +
+            Character.toString(fin.charAt(47)) + Character.toString(fin.charAt(15)) +
+            Character.toString(fin.charAt(55)) + Character.toString(fin.charAt(23)) +
+            Character.toString(fin.charAt(63)) + Character.toString(fin.charAt(31)) +
+               
+           Character.toString(fin.charAt(38)) + Character.toString(fin.charAt(6)) +
+           Character.toString(fin.charAt(46)) + Character.toString(fin.charAt(14)) +
+           Character.toString(fin.charAt(54)) + Character.toString(fin.charAt(22)) +
+           Character.toString(fin.charAt(62)) + Character.toString(fin.charAt(30)) +
+               
+           Character.toString(fin.charAt(37)) + Character.toString(fin.charAt(5)) +
+           Character.toString(fin.charAt(45)) + Character.toString(fin.charAt(13)) +
+           Character.toString(fin.charAt(53)) + Character.toString(fin.charAt(21)) +
+           Character.toString(fin.charAt(61)) + Character.toString(fin.charAt(29)) +
+               
+           Character.toString(fin.charAt(36)) + Character.toString(fin.charAt(4)) +
+           Character.toString(fin.charAt(44)) + Character.toString(fin.charAt(12)) +
+           Character.toString(fin.charAt(52)) + Character.toString(fin.charAt(20)) +
+           Character.toString(fin.charAt(60)) + Character.toString(fin.charAt(28)) +
+               
+           Character.toString(fin.charAt(35)) + Character.toString(fin.charAt(3)) +
+           Character.toString(fin.charAt(43)) + Character.toString(fin.charAt(11)) +
+           Character.toString(fin.charAt(51)) + Character.toString(fin.charAt(19)) +
+           Character.toString(fin.charAt(59)) + Character.toString(fin.charAt(27)) +
+               
+           Character.toString(fin.charAt(34)) + Character.toString(fin.charAt(2)) +
+           Character.toString(fin.charAt(42)) + Character.toString(fin.charAt(10)) +
+           Character.toString(fin.charAt(50)) + Character.toString(fin.charAt(18)) +
+           Character.toString(fin.charAt(58)) + Character.toString(fin.charAt(26)) +
+               
+           Character.toString(fin.charAt(33)) + Character.toString(fin.charAt(1)) +
+           Character.toString(fin.charAt(41)) + Character.toString(fin.charAt(9)) +
+           Character.toString(fin.charAt(49)) + Character.toString(fin.charAt(17)) +
+           Character.toString(fin.charAt(57)) + Character.toString(fin.charAt(25)) +
+               
+           Character.toString(fin.charAt(32)) + Character.toString(fin.charAt(0)) +
+           Character.toString(fin.charAt(40)) + Character.toString(fin.charAt(8)) +
+           Character.toString(fin.charAt(48)) + Character.toString(fin.charAt(16)) +
+           Character.toString(fin.charAt(56)) + Character.toString(fin.charAt(24));
+               
    }
 }
     
