@@ -3,42 +3,56 @@
 package Des;
 
 public class Des  {
-  String llave = "0001001100110100010101110111100110011011101111001101111111110001";
-  String dato =  "0000000100100011010001010110011110001001101010111100110111101111";
-  String E[] = new String [17];
-  String P[] = new String [17];
   String C[] = new String [17] ;
   String Ki[] = new String [17];
   String Kf[] = new String [17];
   String D[] = new String [17];
   String R[] = new String [17];
-  String Sf[] = new String [17];
   String L[] = new String [17];
    String PI;
    String PF;
    
   //Método que realiza el DES
-   public void Des(/*String llave*/){
+   public void Des(String llave, String dato){
        
-       String RXor = "";
+       String RXor;
+       String E;
+       String Sf;
+       String P;
        
        
        Rondas(llave);
        Llaves();
-       PermutacionInicial();
+       PI = PermutacionInicial(dato);
        L[0] = PI.substring(0, 32);
        R[0] = PI.substring(32,64);
-       for (int i = 1; i <= 16; i++) {
+       E = Expansion(R[0]);
+       RXor = Xor(E, Kf[1]);
+       Sf = Sss(RXor);
+       P= Permutacion(Sf);
+       RXor = Xor(P, L[0]);
+       R[1] = RXor;
        
-      }
-       
-       PermutacionFinal(R[16]);
+       for (int i = 1; i < 16; i++) {
+            L[i] = R[i-1];
+            E = Expansion(R[i]);
+            RXor = Xor(E, Kf[i+1]);
+            Sf = Sss(RXor);
+            P= Permutacion(Sf);
+            RXor = Xor(P, L[i]);
+            R[i+1] = RXor;
+            System.out.println("R"+(i+1)+"= "+R[i+1]);
+       }
+       L[16] = R[15];
+       String Fin = R[16] + L[16]; 
+       PF = PermutacionFinal(Fin);
+       System.out.println("CIFRADO FINAL:");
        System.out.println(PF);
    }
    
    //Método que hace un Xor entre dos palabras
-   public void Xor(String P1, String P2){
-       String RXor;
+   public String Xor(String P1, String P2){
+       String RXor = "";
         char RPrueba[] = new char [P1.length()];
         
        for (int i = 0; i < P1.length(); i++) {
@@ -54,9 +68,10 @@ public class Des  {
            else if (P1.charAt(i) =='1' && P2.charAt(i) == '0'){
                RPrueba[i] = '1';
            }
-           RXor = Character.toString(RPrueba[i]);
-           System.out.print(RXor);
+           RXor += Character.toString(RPrueba[i]);
+          // System.out.print(RXor);
        }
+       return RXor;
    }
    
    //Método que hace los desplazamientos de las rondas
@@ -113,7 +128,7 @@ public class Des  {
                 C[i] = C[i-1].substring(2) + Character.toString(C[i-1].charAt(0)) + Character.toString(C[i-1].charAt(1));         
                 D[i] = D[i-1].substring(2) + Character.toString(D[i-1].charAt(0)) + Character.toString(D[i-1].charAt(1));        
             }
-           // System.out.println("C"+i+"=" +C[i]+" D"+i+"= "+D[i]);
+          // System.out.println("C"+i+"=" +C[i]+" D"+i+"= "+D[i]);
        }
    }
    
@@ -147,17 +162,17 @@ public class Des  {
                     Character.toString(Ki[i].charAt(43)) + Character.toString(Ki[i].charAt(48)) +
                     Character.toString(Ki[i].charAt(38)) + Character.toString(Ki[i].charAt(55)) +
                     
-                    Character.toString(Ki[i].charAt(33)) + Character.toString(Ki[i].charAt(53)) +
+                    Character.toString(Ki[i].charAt(33)) + Character.toString(Ki[i].charAt(52)) +
                     Character.toString(Ki[i].charAt(45)) + Character.toString(Ki[i].charAt(41)) +
                     Character.toString(Ki[i].charAt(49)) + Character.toString(Ki[i].charAt(35)) +
                     Character.toString(Ki[i].charAt(28)) + Character.toString(Ki[i].charAt(31));
-            //System.out.println("K"+i+"= "+Kf[i]);
+           // System.out.println("K"+i+"= "+Kf[i]);
 
        }
    }
    
    //Método que realiza la expansión correspondiente
-   public void Expansion(String exp){
+   public String Expansion(String exp){
            exp = Character.toString(exp.charAt(31)) + Character.toString(exp.charAt(0)) +
                 Character.toString(exp.charAt(1)) + Character.toString(exp.charAt(2)) +
                 Character.toString(exp.charAt(3)) + Character.toString(exp.charAt(4)) +
@@ -187,10 +202,11 @@ public class Des  {
                  Character.toString(exp.charAt(27)) + Character.toString(exp.charAt(28)) +
                  Character.toString(exp.charAt(29)) + Character.toString(exp.charAt(30)) +
                  Character.toString(exp.charAt(31)) + Character.toString(exp.charAt(0));
+           return exp;
    }
    
    //Método que hace la permutación correspondiente
-   public void Permutacion(String per){
+   public String Permutacion(String per){
        per = Character.toString(per.charAt(15)) + Character.toString(per.charAt(6)) +
              Character.toString(per.charAt(19)) + Character.toString(per.charAt(20)) +
              Character.toString(per.charAt(28)) + Character.toString(per.charAt(11)) +
@@ -202,22 +218,23 @@ public class Des  {
              Character.toString(per.charAt(30)) + Character.toString(per.charAt(9)) +
                
              Character.toString(per.charAt(1)) + Character.toString(per.charAt(7)) +
-             Character.toString(per.charAt(23)) + Character.toString(per.charAt(25)) +
-             Character.toString(per.charAt(4)) + Character.toString(per.charAt(17)) +
-             Character.toString(per.charAt(30)) + Character.toString(per.charAt(9)) +
+             Character.toString(per.charAt(23)) + Character.toString(per.charAt(13)) +
+             Character.toString(per.charAt(31)) + Character.toString(per.charAt(26)) +
+             Character.toString(per.charAt(2)) + Character.toString(per.charAt(8)) +
                
              Character.toString(per.charAt(18)) + Character.toString(per.charAt(12)) +
              Character.toString(per.charAt(29)) + Character.toString(per.charAt(5)) +
              Character.toString(per.charAt(21)) + Character.toString(per.charAt(10)) +
              Character.toString(per.charAt(3)) + Character.toString(per.charAt(24));
+       return per;
    }
    
    //Método que crea el funcionamiento de las 8 S
-   public void Sss (String ss){
+   public String Sss (String ss){
        String S[] = new String [8];
        String m[] = new String [8];
        String n[] = new String [8];
-       String Si;
+       String Si = "";
        //Se dividen las S y se les asignan valores a m y n
        for (int i = 0; i < 8; i++) {
            if (i == 0){
@@ -579,7 +596,7 @@ public class Des  {
                        if (m[i].equals("00")){
                            S[i]="1001";
                        } else if (m[i].equals("01")){
-                           S[i]="000";
+                           S[i]="0000";
                        }else if (m[i].equals("10")){
                            S[i]="0100";
                        }else if (m[i].equals("11")){
@@ -795,7 +812,7 @@ public class Des  {
                       if (m[i].equals("00")){
                            S[i]="1010";
                        } else if (m[i].equals("01")){
-                           S[i]="0110";
+                           S[i]="0011";
                        }else if (m[i].equals("10")){
                            S[i]="1101";
                        }else if (m[i].equals("11")){
@@ -1547,42 +1564,44 @@ public class Des  {
                        } 
                    }
            }
-           Si= S[i];
-           System.out.print(Si);
+           Si+= S[i];
+           //System.out.print(Si);
        }
+       return Si;
    }
    
    //Método que hace la permutación del dato
-   public void PermutacionInicial(){
-      PI = Character.toString(dato.charAt(57)) + Character.toString(dato.charAt(49)) + Character.toString(dato.charAt(41)) + Character.toString(dato.charAt(33)) +
-      Character.toString(dato.charAt(25)) + Character.toString(dato.charAt(17)) + Character.toString(dato.charAt(9)) + Character.toString(dato.charAt(1)) +
+   public String PermutacionInicial(String ini){
+      ini = Character.toString(ini.charAt(57)) + Character.toString(ini.charAt(49)) + Character.toString(ini.charAt(41)) + Character.toString(ini.charAt(33)) +
+      Character.toString(ini.charAt(25)) + Character.toString(ini.charAt(17)) + Character.toString(ini.charAt(9)) + Character.toString(ini.charAt(1)) +
                     
-     Character.toString(dato.charAt(59)) + Character.toString(dato.charAt(51)) + Character.toString(dato.charAt(43)) + Character.toString(dato.charAt(35)) +
-     Character.toString(dato.charAt(27)) + Character.toString(dato.charAt(19)) + Character.toString(dato.charAt(11)) + Character.toString(dato.charAt(3)) +
+     Character.toString(ini.charAt(59)) + Character.toString(ini.charAt(51)) + Character.toString(ini.charAt(43)) + Character.toString(ini.charAt(35)) +
+     Character.toString(ini.charAt(27)) + Character.toString(ini.charAt(19)) + Character.toString(ini.charAt(11)) + Character.toString(ini.charAt(3)) +
                     
-     Character.toString(dato.charAt(61)) + Character.toString(dato.charAt(53)) + Character.toString(dato.charAt(45)) + Character.toString(dato.charAt(37)) +
-     Character.toString(dato.charAt(29)) + Character.toString(dato.charAt(21)) + Character.toString(dato.charAt(13)) + Character.toString(dato.charAt(5)) +
+     Character.toString(ini.charAt(61)) + Character.toString(ini.charAt(53)) + Character.toString(ini.charAt(45)) + Character.toString(ini.charAt(37)) +
+     Character.toString(ini.charAt(29)) + Character.toString(ini.charAt(21)) + Character.toString(ini.charAt(13)) + Character.toString(ini.charAt(5)) +
                     
-     Character.toString(dato.charAt(63)) + Character.toString(dato.charAt(55)) + Character.toString(dato.charAt(47)) + Character.toString(dato.charAt(39)) +
-     Character.toString(dato.charAt(31)) + Character.toString(dato.charAt(23)) + Character.toString(dato.charAt(15)) + Character.toString(dato.charAt(7)) +
+     Character.toString(ini.charAt(63)) + Character.toString(ini.charAt(55)) + Character.toString(ini.charAt(47)) + Character.toString(ini.charAt(39)) +
+     Character.toString(ini.charAt(31)) + Character.toString(ini.charAt(23)) + Character.toString(ini.charAt(15)) + Character.toString(ini.charAt(7)) +
                     
-     Character.toString(dato.charAt(56)) + Character.toString(dato.charAt(48)) + Character.toString(dato.charAt(40)) + Character.toString(dato.charAt(32)) +
-     Character.toString(dato.charAt(24)) + Character.toString(dato.charAt(16)) + Character.toString(dato.charAt(8)) + Character.toString(dato.charAt(0)) +
+     Character.toString(ini.charAt(56)) + Character.toString(ini.charAt(48)) + Character.toString(ini.charAt(40)) + Character.toString(ini.charAt(32)) +
+     Character.toString(ini.charAt(24)) + Character.toString(ini.charAt(16)) + Character.toString(ini.charAt(8)) + Character.toString(ini.charAt(0)) +
                     
-     Character.toString(dato.charAt(58)) + Character.toString(dato.charAt(50)) + Character.toString(dato.charAt(42)) + Character.toString(dato.charAt(34)) +
-     Character.toString(dato.charAt(26)) + Character.toString(dato.charAt(18)) + Character.toString(dato.charAt(10)) + Character.toString(dato.charAt(2)) +
+     Character.toString(ini.charAt(58)) + Character.toString(ini.charAt(50)) + Character.toString(ini.charAt(42)) + Character.toString(ini.charAt(34)) +
+     Character.toString(ini.charAt(26)) + Character.toString(ini.charAt(18)) + Character.toString(ini.charAt(10)) + Character.toString(ini.charAt(2)) +
                     
-     Character.toString(dato.charAt(60)) + Character.toString(dato.charAt(52)) + Character.toString(dato.charAt(44)) + Character.toString(dato.charAt(36)) +
-     Character.toString(dato.charAt(28)) + Character.toString(dato.charAt(20)) + Character.toString(dato.charAt(12)) + Character.toString(dato.charAt(4)) +
+     Character.toString(ini.charAt(60)) + Character.toString(ini.charAt(52)) + Character.toString(ini.charAt(44)) + Character.toString(ini.charAt(36)) +
+     Character.toString(ini.charAt(28)) + Character.toString(ini.charAt(20)) + Character.toString(ini.charAt(12)) + Character.toString(ini.charAt(4)) +
                     
-     Character.toString(dato.charAt(62)) + Character.toString(dato.charAt(54)) + Character.toString(dato.charAt(46)) + Character.toString(dato.charAt(38)) +
-     Character.toString(dato.charAt(10)) + Character.toString(dato.charAt(22)) + Character.toString(dato.charAt(14)) + Character.toString(dato.charAt(6));
+     Character.toString(ini.charAt(62)) + Character.toString(ini.charAt(54)) + Character.toString(ini.charAt(46)) + Character.toString(ini.charAt(38)) +
+     Character.toString(ini.charAt(10)) + Character.toString(ini.charAt(22)) + Character.toString(ini.charAt(14)) + Character.toString(ini.charAt(6));
     // System.out.println(PI);
+    return ini;
    }
    
    //Método que hace la permutación final y despliega el cifrado
-   public void PermutacionFinal (String fin){
-       PF = Character.toString(fin.charAt(39)) + Character.toString(fin.charAt(7)) +
+   public String PermutacionFinal (String fin){
+       fin = Character.toString(fin.charAt(39)) + Character.toString(fin.charAt(7)) +
             Character.toString(fin.charAt(47)) + Character.toString(fin.charAt(15)) +
             Character.toString(fin.charAt(55)) + Character.toString(fin.charAt(23)) +
             Character.toString(fin.charAt(63)) + Character.toString(fin.charAt(31)) +
@@ -1621,7 +1640,7 @@ public class Des  {
            Character.toString(fin.charAt(40)) + Character.toString(fin.charAt(8)) +
            Character.toString(fin.charAt(48)) + Character.toString(fin.charAt(16)) +
            Character.toString(fin.charAt(56)) + Character.toString(fin.charAt(24));
-               
+           return fin;
    }
 }
     
